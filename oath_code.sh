@@ -1,9 +1,7 @@
 #!/bin/bash
 
 if [ $(ykman list | wc -l) -eq 0 ]; then
-    dunstify --hints='string:x-dunst-stack-tag:oath_code' \
-        --appname='oath_code.sh' \
-        'No yubikey found'
+    zenity --error --text 'No yubikey found'
     exit 1
 fi
 
