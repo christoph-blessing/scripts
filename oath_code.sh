@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $(ykman list | wc -l) -eq 0 ]; then
+if [ "$(ykman list | wc -l)" -eq 0 ]; then
     zenity --error --text 'No yubikey found'
     exit 1
 fi
