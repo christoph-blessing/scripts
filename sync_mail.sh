@@ -1,6 +1,6 @@
 #!/bin/bash
 
-mbsync --config ~/.config/mbsync/mbsyncrc --all --quiet
+mbsync --config ~/.config/mbsync/mbsyncrc --all
 
 prefix="$XDG_DATA_HOME/mail/"
 
