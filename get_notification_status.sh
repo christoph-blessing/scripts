@@ -6,7 +6,7 @@ if ! command -v dunstctl; then
 fi
 
 if [ "$(dunstctl is-paused)" = 'true' ]; then
-    echo 'Off'
+    echo '#[fg=#cc241d]●#[fg=default]'
 else
-    echo 'On'
+    echo '#[fg=#98971a]●#[fg=default]'
 fi
