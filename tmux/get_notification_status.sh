@@ -6,7 +6,7 @@ if ! command -v dunstctl; then
 fi
 
 if [ "$(dunstctl is-paused)" = 'true' ]; then
-    echo '#[fg=#cc241d]●#[fg=default]'
+    echo '🔕'
 else
-    echo '#[fg=#98971a]●#[fg=default]'
+    echo '🔔'
 fi
