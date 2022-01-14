@@ -2,6 +2,11 @@
 
 mbsync --config ~/.config/mbsync/mbsyncrc --all
 
+if [ "$1" = '--no-notify' ]; then
+    touch ~/.config/neomutt/last-mail-sync
+    exit
+fi
+
 prefix="$XDG_DATA_HOME/mail/"
 
 for acc_path in "$prefix"*; do
