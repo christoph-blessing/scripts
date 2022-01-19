@@ -8,6 +8,8 @@ if ! [ -d "$tmpdir" ]; then
     mkdir "$tmpdir"
 fi
 
+echo "$long_break_count" > "$tmpdir"/long_break_count
+
 if [ -e "$tmpdir"/count ]; then
     old_count=$(cat "$tmpdir"/count)
     new_count=$((old_count + 1))
