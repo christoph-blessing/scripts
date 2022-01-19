@@ -8,15 +8,18 @@ if ! [ -d "$tmpdir" ]; then
     mkdir "$tmpdir"
 fi
 
+if [ ! -e "$tmpdir"/current_count ]; then
+    echo 0 > "$tmpdir"/current_count
+fi
+
 echo "$long_break_count" > "$tmpdir"/long_break_count
 
-if [ -e "$tmpdir"/count ]; then
-    old_count=$(cat "$tmpdir"/count)
-    new_count=$((old_count + 1))
-    echo "$new_count" > "$tmpdir"/count
-else
-    echo 1 > "$tmpdir"/count
+old_count=$(cat "$tmpdir"/current_count)
+if [ "$old_count" -ge "$long_break_count" ]; then
+    old_count=0
 fi
+new_count=$((old_count + 1))
+echo "$new_count" > "$tmpdir"/current_count
 
 touch "$tmpdir"/is_running
 trap 'rm -f -- "$tmpdir"/is_running' EXIT
@@ -27,7 +30,6 @@ dunstctl set-paused false
 
 if [ "$new_count" = "$long_break_count" ]; then
     dunstify --hints string:x-dunst-stack-tag:pomodoro_finished "Take a long break"
-    rm "$tmpdir"/count
 else
     dunstify --hints string:x-dunst-stack-tag:pomodoro_finished "Take a break"
 fi
