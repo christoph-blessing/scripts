@@ -1,6 +1,6 @@
 #!/bin/sh
 
-layout=$(setxkbmap -query | awk '/layout/ {print $2}')
+layout=$("$SCRIPTDIR"/get_layout.sh)
 
 if [ "$layout" = 'de' ]; then
     setxkbmap us
