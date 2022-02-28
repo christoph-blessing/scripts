@@ -7,7 +7,7 @@ if [ "$1" = '--no-notify' ]; then
     exit
 fi
 
-for acc_path in "$MAILDIR"*; do
+for acc_path in "$MAILDIR"/*; do
     new_count=$(find  "$acc_path"/inbox/new -type f -newer ~/.config/neomutt/last-mail-sync 2> /dev/null | wc -l)
     if [ "$new_count" -gt '0' ]; then
         acc_name="${acc_path#"$MAILDIR"}"
