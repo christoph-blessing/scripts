@@ -29,7 +29,6 @@ dunstctl set-paused true
 sleep "$dur"
 dunstctl set-paused false
 "$SCRIPTDIR"/hide_node.sh slack
-sleep "$dur"
 
 if [ "$new_count" = "$long_break_count" ]; then
     dunstify --hints string:x-dunst-stack-tag:pomodoro_finished "Take a long break"
