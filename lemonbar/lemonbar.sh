@@ -25,4 +25,4 @@ while :; do
     sleep 0.1
 done &
 
-tail -f "$fifo" | "$(dirname -- "$0")"/parser.sh | lemonbar -p -f "$font"
+tail -f "$fifo" | "$(dirname -- "$0")"/parser.sh | lemonbar -p -f "$font" -F "#fbf1c7" -B "#282828"
