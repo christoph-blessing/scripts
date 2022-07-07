@@ -9,9 +9,11 @@ ssh "$db_server" "mysql --execute \"CREATE USER '$user'@'%' IDENTIFIED BY '$pass
 GRANT ALL PRIVILEGES ON \\\`$user\\_%\\\`.* TO '$user'@'%';\n
 GRANT ALL PRIVILEGES ON \\\`nnfabrik\\_$user\\_%\\\`.* TO '$user'@'%';\"" > /dev/null
 
+db_server_ip=$(ssh -G "$db_server" | awk '/^hostname / { print $2 }')
+
 xclip -selection c << EOF
 Database Server Credentials:
-host: '$db_server'
+host: '$db_server_ip'
 user: '$user'
 password: '$password'
 
