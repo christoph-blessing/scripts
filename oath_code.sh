@@ -7,4 +7,4 @@ fi
 
 account=$(ykman oath accounts list | dmenu -i)
 code=$(ykman oath accounts code --single "$account" 2> /dev/null)
-echo "$code" | xclip -selection c
+xdotool type "$code"
