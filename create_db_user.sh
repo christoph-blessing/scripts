@@ -6,7 +6,7 @@ user=$2
 password=$(keepassxc-cli diceware --quiet --words 4)
 
 ssh "$db_server" "mysql --execute \"CREATE USER '$user'@'%' IDENTIFIED BY '$password';\n
-GRANT ALL PRIVILEGES ON \\\`$user\\_%\\\`.* TO '$user'@'%';\n
+GRANT ALL PRIVILEGES ON \\\`$user\\_%\\\`.* TO '$user'@'%' WITH GRANT OPTION;\n
 GRANT ALL PRIVILEGES ON \\\`nnfabrik\\_$user\\_%\\\`.* TO '$user'@'%';\"" > /dev/null
 
 db_server_ip=$(ssh -G "$db_server" | awk '/^hostname / { print $2 }')
