@@ -25,11 +25,16 @@ tmux split-window -t $session:0.3 -v
 
 tmux send-keys -t $session:0.0 'htop' C-m
 tmux send-keys -t $session:0.1 'watch -n 1 nvidia-smi' C-m
-tmux send-keys -t $session:0.2 'watch -n 1 sensors' C-m
+tmux send-keys -t $session:0.2 'watch -n 1 sensors k10temp-pci-00c3 nvme-pci-0300 nct6798-isa-0290' C-m
 tmux send-keys -t $session:0.3 "stress --cpu 24 --timeout $duration" C-m
 tmux send-keys -t $session:0.4 "docker run --rm --gpus all --entrypoint ./gpu_burn gpu_burn -tc $duration" C-m
 
 tmux select-pane -t $session:0.5
+
+if [ -z "$TTY" ]
+then
+    exit
+fi
 
 if [ -z "$TMUX" ]
 then
